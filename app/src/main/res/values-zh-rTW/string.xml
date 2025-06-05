@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name" translatable="false">Launchpad</string>
+
+    <string name="shortcut_short_label">Launchpad 搜尋</string>
+    <string name="shortcut_long_label">Launchpad 搜尋</string>
+    <string name="shortcut_disabled_label">Launchpad 捷徑已停用</string>
+
+    <string name="search_bar_input_text">在此搜尋…</string>
+
+    <string name="search_action_settings">設定</string>
+    <string name="search_action_close">關閉</string>
+
+    <string name="home_banner_text" translatable="false">launchpad.</string>
+    <string name="home_banner_slogan">事半功倍</string>
+
+    <string name="home_action_contacts_perm">允許聯絡人權限</string>
+    <string name="home_contacts_perm_summary">以使聯絡人插件正常運作</string>
+    <string name="home_contacts_toast">已授予權限</string>
+
+    <string name="home_alter_qs_tile">新增快速面板板塊</string>
+    <string name="home_alter_shortcut">新增捷徑</string>
+    <string name="home_alter_summary">或者您不想取代您的助理</string>
+
+    <string name="home_action_assist">切換助理</string>
+    <string name="home_action_assist_ENABLED">LAUNCHPAD 已啟動</string>
+
+    <string name="home_assist_summary">從助理列表中選擇 Launchpad</string>
+    <string name="home_assist_summary_ENABLED">手勢操作：從角落滑動啟動\n按鈕操作：長按主畫面按鈕啟動\n</string>
+
+    <string name="settings_search_title">搜尋</string>
+
+    <string name="settings_clear_search">啟動時清除搜尋</string>
+    <string name="settings_clear_search_summary">每次啟動時輸入內容將會被清除</string>
+
+    <string name="settings_search_show_keyboard">啟動時開啟鍵盤</string>
+    <string name="settings_search_show_keyboard_summary">Enabling this option will show the soft keyboard automatically</string>
+
+    <string name="settings_general_title">一般</string>
+
+    <string name="settings_close_on_outclick_summary">點擊 LaunchPad 外部關閉視窗</string>
+    <string name="settings_close_on_outclick">快速關閉</string>
+
+    <string name="settings_close_on_action">執行動作時關閉</string>
+    <string name="settings_close_on_action_summary">執行任何動作時關閉視窗</string>
+
+    <string name="settings_top_result_default">Submit opens top result</string>
+    <string name="settings_top_result_default_summary">The top result will be the opened when pressing Enter or the \'Search button\' in your keyboard</string>
+
+    <string name="settings_layout_title">版面配置</string>
+
+    <string name="settings_layout_blur">模糊背景</string>
+    <string name="settings_layout_blur_summary">在支援的裝置啟動背景模糊</string>
+
+    <string name="settings_layout_bottom">底部版面配置</string>
+    <string name="settings_layout_bottom_summary">實驗性\n\n它會開啟一個類似其他助理的底部工作表選單，而不是放置在頂部的浮動視窗。</string>
+
+    <string name="settings_plugins_title">插件</string>
+    <string name="settings_plugins_enabled">插件已啟用</string>
+    <string name="settings_plugins_enabled_summary">初始化並使用您想要的插件</string>
+
+    <string name="settings_plugin_search">網頁搜尋: 引擎</string>
+    <string name="settings_plugin_search_summary">選擇您想要用來網路搜尋的搜尋引擎</string>
+
+    <string name="settings_plugin_search_query">網頁搜尋 : 自訂查詢網址</string>
+    <string name="settings_plugin_search_query_summary">If Engine is set to custom, this query url will be passed.\nInclude a \'\%s\' where you want the search query to be replaced.</string>
+
+    <!-- FUNCTIONAL -->
+
+    <string name="general_warning_pinned_shortcut">您的啟動器不支援固定捷徑</string>
+    <string name="general_warning_qs_tile">新增快速面板板塊需要 Android 13+，嘗試手動添加</string>
+    <string name="general_warning_qs_tile_exists">快速面板板塊已存在</string>
+
+    <string name="general_warning_assistant_service">Launchpad 正在運行中</string>
+
+    <string name="plugin_search_result">搜尋 %s 中的 %s</string>
+
+    <string name="plugin_unit_conversion_result">%.3f %s</string>
+    <string name="plugin_unit_conversion_result_full">%f %s</string>
+    <string name="plugin_unit_conversion_result_units">%s 轉換為 %s</string>
+
+    <string name="plugin_definition_result_title">%s 的詞語替代</string>
+    <string name="plugin_definition_result">
+        同義詞 : %s
+
+        反義詞 : %s
+    </string>
+
+
+
+    <string name="plugin_shortcuts_query">來自 %s 的捷徑動作</string>
+
+    <string name="plugin_definition_easter_egg">您知道您在做什麼</string>
+
+    <string name="search_engine_custom">網頁</string>
+    <string translatable="false" name="search_google_query">Google|https://www.google.com/search?q=%s</string>
+    <string translatable="false" name="search_duckduckgo_query">DuckDuckGo|https://duckduckgo.com/?q=%s</string>
+    <string translatable="false" name="search_bing_query">Bing|https://www.bing.com/search?q=%s</string>
+
+    <!--  INFO  -->
+    <string name="contact_mail_template_subject">Launchpad 搜尋: 支援</string>
+    <string name="contact_mail_template_body" formatted="true" >預期行為 / 功能請求:\n\n\n
+問題 (如果有的話):\n\n\n
+Version: %s
+    </string>
+    <string translatable="false" name="link_kofi">https://ko-fi.com/devrinth</string>
+    <string translatable="false" name="link_privacy">https://devrinth-studio.web.app/privacy.html</string>
+    <string translatable="false" name="link_website">https://devrinth-studio.web.app/</string>
+    <string translatable="false" name="link_mail">devrinth.studio@gmail.com</string>
+
+
+
+
+</resources>
