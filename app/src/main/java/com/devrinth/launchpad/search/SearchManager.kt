@@ -111,6 +111,7 @@ class SearchManager(
 
         if (!sharedPreferences.getBoolean("setting_clear_search", true)) {
             searchTextBox.setText(sharedPreferences.getString("LAST_SEARCH_QUERY", ""))
+            searchTextBox.setSelection(searchTextBox.text.length)
         }
         searchCardLayout.post {
             processQuery()
