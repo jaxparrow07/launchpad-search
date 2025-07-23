@@ -11,11 +11,10 @@
         <item>Settings</item>
         <item>Shortcuts</item>
         <item>Files</item>
-<!--        <item>Word Definitions ( heavy )</item>-->
     </string-array>
 
     <string-array translatable="false" name="available_plugins_id">
-        <item>int-search</item>
+        <item>search-suggestions</item>
         <item>calc</item>
         <item>websearch</item>
         <item>units</item>
@@ -24,7 +23,6 @@
         <item>settings</item>
         <item>shortcuts</item>
         <item>files</item>
-<!--        <item>definition</item>-->
     </string-array>
 
 

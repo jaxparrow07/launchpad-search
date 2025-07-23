@@ -40,7 +40,7 @@ class SearchManager(
     private var pluginList = arrayListOf<SearchPlugin>()
     private var pluginsMap = mapOf(
 
-        "int-search" to SearchSuggestionsPlugin(mContext),
+        "search-suggestions" to SearchSuggestionsPlugin(mContext),
 
         "apps" to LauncherPlugin(mContext),
         "contacts" to ContactsPlugin(mContext),
@@ -131,36 +131,34 @@ class SearchManager(
         pluginList = arrayListOf()
         CoroutineScope(Dispatchers.Main).launch {
             pluginsMap.forEach { plugin ->
-                val isInternalPlugin = plugin.key.contains("req-")
+                val isInternalPlugin = plugin.key.contains("int-")
 
                 if (enabledPlugins!!.contains(plugin.key) || enabledPlugins!!.isEmpty() || (isInternalPlugin)){
                     try {
-
                         plugin.value.pluginInit()
-
                     } catch (e : Exception) {
                         Log.e(plugin.key, e.localizedMessage!!)
                     } finally {
-
                         pluginList.add(plugin.value)
                         plugin.value.onPluginResult { resultArray, query ->
                             if (BuildConfig.DEBUG)
                                 Log.d(TAG, "${plugin.key.uppercase()} returned ${resultArray.size} values")
 
                             if (!isInternalPlugin) {
-                                resultArray.forEach { res ->
-                                    appendResult(res, query, plugin.key)
-                                }
-                            } else {
-                                if (plugin.key.contains("int-search")) {
+
+                                if (plugin.key.contains("search-suggestions")) {
                                     resultArray.forEach { res ->
                                         searchSuggestions.add( res )
                                         searchSuggestionListAdapter.notifyItemChanged(searchSuggestions.size - 1)
                                     }
+                                } else {
+                                    resultArray.forEach { res ->
+                                        appendResult(res, query, plugin.key)
+                                    }
                                 }
-
+                            } else {
+                                // TODO: Internal Plugins
                             }
-
                         }
                     }
                 }
