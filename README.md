@@ -26,12 +26,9 @@ Never leave your apps; get your tasks done with just a floating window that does
 
 <hr>
 
-#### TO-DO: Refactor
-This project and the files are being refactored. As many of you have been waiting for a while, here it is. Thanks for your immense support throughout the development.
+## Plugin system
 
-#### Plugin system
-
-##### Core Plugins
+### Core Plugins
 * Apps
 * Contacts
 * Search Suggestions
@@ -41,5 +38,14 @@ This project and the files are being refactored. As many of you have been waitin
 * Settings
 * App actions/shortcuts
 
-#### Contribute
+## Contributions
+### Developmental
+> - Fork the repo
+> - Make changes to your repo either by cloning ( `dev` branch only ) or editing directly via github
+> - Commit and push changes ( no force pushes )
+> - Create a pull request
+>   
+> 📌 Please base your pull requests on the `dev` branch. The `main` branch is reserved for stable releases only.
+
+### Financial
 You can buy me a coffee at  [Ko-fi](https://ko-fi.com/devrinth) to support the development of this project.
