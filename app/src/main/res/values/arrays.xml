@@ -10,7 +10,6 @@
         <item>Contacts</item>
         <item>Settings</item>
         <item>Shortcuts</item>
-        <item>Files</item>
     </string-array>
 
     <string-array translatable="false" name="available_plugins_id">
@@ -22,7 +21,6 @@
         <item>contacts</item>
         <item>settings</item>
         <item>shortcuts</item>
-        <item>files</item>
     </string-array>
 
 
