@@ -9,6 +9,7 @@ open class SearchPlugin(
 
     open var ACTIVATION_SHORTCUT = ""
     open var INIT = false
+    open var PRIORITY = 0
 
     private var updateUI: ((List<ResultAdapter>, String) -> Unit)? = null
 

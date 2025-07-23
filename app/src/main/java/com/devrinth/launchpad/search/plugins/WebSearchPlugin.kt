@@ -14,6 +14,8 @@ import java.nio.charset.StandardCharsets
 
 class WebSearchPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var PRIORITY = 1
+
     private val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext)
 
     private lateinit var searchEngine : String

@@ -10,6 +10,8 @@ import com.devrinth.launchpad.utils.IntentUtils
 
 class SettingsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var PRIORITY = 1
+
     private val settingsMap = mapOf(
         "Wi-Fi Settings" to Settings.ACTION_WIFI_SETTINGS,
         "Bluetooth Settings" to Settings.ACTION_BLUETOOTH_SETTINGS,
