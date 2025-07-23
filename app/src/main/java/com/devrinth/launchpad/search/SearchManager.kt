@@ -37,7 +37,7 @@ class SearchManager(
 ) {
 
     private var searchQuery: String = ""
-    // Track previous query to detect typing direction
+
     private var previousQuery: String = ""
 
     private var pluginList = arrayListOf<SearchPlugin>()
@@ -116,7 +116,6 @@ class SearchManager(
         searchCardLayout.post {
             processQuery()
         }
-
         externalSearch.listener = object : ExternalSearch.ExternalSearchListener {
             override fun onExternalSearchResult(result: ResultAdapter, query: String, pluginPackage: String?) {
                 addResults(listOf(result), query, pluginPackage)
@@ -129,47 +128,61 @@ class SearchManager(
         externalSearch.unloadPlugins()
     }
 
+    /*
+    *  PLUGIN LOADING
+    *
+    *  -> This may look complicated, but this was built to load the plugins asynchronously, and add listeners for the loaded plugins.
+    *  -> Might add a less messy way to load plugins in the future.
+    *
+    *  */
+    private fun loadPlugin(pluginName: String, isInternalPlugin: Boolean = false) {
+
+        val plugin = pluginsMap[pluginName]!!
+
+        try {
+            plugin.pluginInit()
+
+        } catch (e : Exception) {
+            Log.e(pluginName, e.localizedMessage!!)
+
+        } finally {
+
+            pluginList.add(plugin)
+            plugin.onPluginResult { resultArray, query ->
+                if (BuildConfig.DEBUG)
+                    Log.d(TAG, "${pluginName.uppercase()} returned ${resultArray.size} values")
+
+                if (!isInternalPlugin) {
+
+                    if (pluginName == "search-suggestions") {
+                        addSearchSuggestions(resultArray, query)
+                    } else {
+                        if (plugin.PRIORITY > 0) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                kotlinx.coroutines.delay((100 * (plugin.PRIORITY).toLong()))
+                                addResults(resultArray, query, pluginName)
+                            }
+                        } else {
+                            addResults(resultArray, query, pluginName)
+                        }
+                    }
+                } else {
+                    // TODO: Internal Plugins
+                }
+            }
+
+        }
+    }
     fun reloadPlugins() {
-
         actionSearchOpen = sharedPreferences.getBoolean("setting_top_result_default", true)
-
         enabledPlugins = sharedPreferences.getStringSet("setting_search_plugins", pluginsMap.keys)
 
         pluginList = arrayListOf()
         CoroutineScope(Dispatchers.Main).launch {
             pluginsMap.forEach { plugin ->
                 val isInternalPlugin = plugin.key.contains("int-")
-
-                if (enabledPlugins!!.contains(plugin.key) || enabledPlugins!!.isEmpty() || (isInternalPlugin)){
-                    try {
-                        plugin.value.pluginInit()
-                    } catch (e : Exception) {
-                        Log.e(plugin.key, e.localizedMessage!!)
-                    } finally {
-                        pluginList.add(plugin.value)
-                        plugin.value.onPluginResult { resultArray, query ->
-                            if (BuildConfig.DEBUG)
-                                Log.d(TAG, "${plugin.key.uppercase()} returned ${resultArray.size} values")
-
-                            if (!isInternalPlugin) {
-
-                                if (plugin.key.contains("search-suggestions")) {
-                                        addSearchSuggestions(resultArray, query)
-                                } else {
-                                    if (pluginsMap[plugin.key]!!.PRIORITY > 0) {
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            kotlinx.coroutines.delay((100 * (pluginsMap[plugin.key]!!.PRIORITY).toLong())) // Small delay to ensure other results are processed first
-                                            addResults(resultArray, query, plugin.key)
-                                        }
-                                    } else {
-                                        addResults(resultArray, query, plugin.key)
-                                    }
-                                }
-                            } else {
-                                // TODO: Internal Plugins
-                            }
-                        }
-                    }
+                if (enabledPlugins!!.contains(plugin.key) || enabledPlugins!!.isEmpty() || (isInternalPlugin)) {
+                    loadPlugin(plugin.key, isInternalPlugin)
                 }
             }
         }
@@ -261,13 +274,13 @@ class SearchManager(
             mPlugin.pluginProcess(searchQuery)
         }
 
-        // Update previous query for next comparison
         previousQuery = searchQuery
     }
 
     private fun clearAllResults() {
         if (resultArray.isNotEmpty()) {
             val count = resultArray.size
+
             resultArray.clear()
             displayedResults.clear()
             resultScrollAdapter.notifyItemRangeRemoved(0, count)
@@ -277,6 +290,7 @@ class SearchManager(
     private fun clearAllSuggestions() {
         if (searchSuggestions.isNotEmpty()) {
             val count = searchSuggestions.size
+
             searchSuggestions.clear()
             displayedSuggestions.clear()
             searchSuggestionListAdapter.notifyItemRangeRemoved(0, count)
@@ -284,12 +298,14 @@ class SearchManager(
     }
 
     private fun filterExistingResultsForward() {
-        // Only remove results that don't match the current query (more specific filtering)
         val iterator = resultArray.iterator()
+
         var index = 0
         while (iterator.hasNext()) {
             val result = iterator.next()
+
             if (!resultMatchesQuery(result, searchQuery)) {
+
                 iterator.remove()
                 displayedResults.remove(result)
                 resultScrollAdapter.notifyItemRemoved(index)
@@ -300,12 +316,13 @@ class SearchManager(
     }
 
     private fun filterExistingSuggestionsForward() {
-        // Only remove suggestions that don't match the current query
         val iterator = searchSuggestions.iterator()
         var index = 0
         while (iterator.hasNext()) {
             val suggestion = iterator.next()
+
             if (!suggestionMatchesQuery(suggestion, searchQuery)) {
+
                 iterator.remove()
                 displayedSuggestions.remove(suggestion)
                 searchSuggestionListAdapter.notifyItemRemoved(index)
