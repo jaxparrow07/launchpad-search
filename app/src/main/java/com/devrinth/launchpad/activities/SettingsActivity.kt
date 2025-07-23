@@ -141,41 +141,6 @@ class SettingsActivity : AppCompatActivity() {
             startActivity( Intent( Settings.ACTION_VOICE_INPUT_SETTINGS ) )
         }
 
-        findViewById<View>(R.id.home_button_shortcut).setOnClickListener {
-            val shortcutManager =
-                this.getSystemService(ShortcutManager::class.java)
-
-            if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported) {
-                val shortcutInfo = ShortcutInfo.Builder(this, "launchpad_shortcut")
-                    .setShortLabel(getString(R.string.shortcut_short_label))
-                    .setLongLabel(getString(R.string.shortcut_long_label))
-                    .setIcon(Icon.createWithResource(this, R.drawable.shortcut_icon))
-                    .setIntent(Intent(this, LaunchpadOverlayActivity::class.java).apply {
-                        action = Intent.ACTION_VIEW
-                    })
-                    .build()
-
-                val pinnedShortcutCallbackIntent =
-                    shortcutManager.createShortcutResultIntent(shortcutInfo)
-
-                val successCallback = PendingIntent.getBroadcast(
-                    this,
-                    0,
-                    pinnedShortcutCallbackIntent,
-                    PendingIntent.FLAG_IMMUTABLE
-                )
-
-                shortcutManager.requestPinShortcut(shortcutInfo, successCallback.intentSender)
-            } else {
-                Toast.makeText(
-                    this,
-                    getString(R.string.general_warning_pinned_shortcut),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        }
-
         findViewById<View>(R.id.home_button_qs_tile).setOnClickListener {
             if (Build.VERSION.SDK_INT >= VERSION_CODES.TIRAMISU) {
                 val componentName = ComponentName(this, LaunchpadTileService::class.java)

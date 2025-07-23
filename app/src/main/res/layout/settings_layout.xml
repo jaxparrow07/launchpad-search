@@ -168,18 +168,6 @@
                     android:orientation="horizontal"
                     android:padding="20dp"
                     >
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/home_button_shortcut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAllCaps="true"
-                        android:text="@string/home_alter_shortcut"
-                        style="@style/Widget.Material3.Button"
-                        />
-
-                    <Space
-                        android:layout_width="@dimen/extra_spacing"
-                        android:layout_height="0dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/home_button_qs_tile"
