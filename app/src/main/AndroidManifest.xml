@@ -31,7 +31,6 @@
         android:theme="@style/Theme.Launchpad"
         tools:targetApi="34">
 
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
