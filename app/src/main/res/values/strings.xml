@@ -1,9 +1,14 @@
-<resources>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name" translatable="false">Launchpad</string>
 
     <string name="shortcut_short_label">Launchpad Search</string>
     <string name="shortcut_long_label">Launchpad Search</string>
     <string name="shortcut_disabled_label">Launchpad shortcut is disabled</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_plugins">Plugins</string>
+    <string name="menu_settings">Settings</string>
 
     <string name="search_bar_input_text">Search here…</string>
 
@@ -106,8 +111,5 @@ Version: %s
     <string translatable="false" name="link_privacy">https://devrinth-studio.web.app/privacy.html</string>
     <string translatable="false" name="link_website">https://devrinth-studio.web.app/</string>
     <string translatable="false" name="link_mail">devrinth.studio@gmail.com</string>
-
-
-
 
 </resources>
