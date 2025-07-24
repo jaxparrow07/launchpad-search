@@ -3,10 +3,17 @@
         android:id="@+id/navigation_home"
         android:enabled="true"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home"/>
+        android:title="@string/menu_home"/>
+
+    <item
+        android:id="@+id/navigation_plugins"
+        android:enabled="true"
+        android:icon="@drawable/baseline_extension_24"
+        android:title="@string/menu_plugins"/>
+
     <item
         android:id="@+id/navigation_settings"
         android:enabled="true"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Settings"/>
+        android:title="@string/menu_settings"/>
 </menu>

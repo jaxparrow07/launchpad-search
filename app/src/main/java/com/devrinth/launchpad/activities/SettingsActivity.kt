@@ -1,14 +1,11 @@
 package com.devrinth.launchpad.activities
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.app.PendingIntent
+
 import android.app.StatusBarManager
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Build.VERSION_CODES
@@ -19,9 +16,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.devrinth.launchpad.BuildConfig
 import com.devrinth.launchpad.R
+import com.devrinth.launchpad.adapters.PluginListAdapter
 import com.devrinth.launchpad.fragments.LaunchPadPreferences
+import com.devrinth.launchpad.plugins.PluginManager
 import com.devrinth.launchpad.receivers.AssistantActionReceiver
 import com.devrinth.launchpad.services.LaunchpadTileService
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -31,8 +32,13 @@ import java.util.concurrent.Executors
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var settingsContainer : View
+    private lateinit var pluginManagerContainer : View
     private lateinit var homeContainer : View
     private lateinit var navigationBarView: BottomNavigationView
+
+    private lateinit var pluginManager: PluginManager
+    private lateinit var pluginAdapter: PluginListAdapter
+    private lateinit var pluginsRecyclerView: RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +56,6 @@ class SettingsActivity : AppCompatActivity() {
 
         initViews()
         checkDefaults()
-
-//        if (intent.getBooleanExtra("from_launchpad", false)) {
-//            navigationBarView.selectedItemId = R.id.navigation_settings
-//        }
     }
 
     private val REQUEST_CODE_CONTACTS = 700
@@ -132,6 +134,8 @@ class SettingsActivity : AppCompatActivity() {
 
         settingsContainer = findViewById(R.id.settings_container)
         homeContainer = findViewById(R.id.home_container)
+        pluginManagerContainer = findViewById(R.id.plugin_manager_container)
+
         navigationBarView = findViewById(R.id.bottom_navigation)
 
         findViewById<View>(R.id.home_allow_contacts).setOnClickListener {
@@ -167,23 +171,39 @@ class SettingsActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.general_warning_qs_tile), Toast.LENGTH_SHORT).show()
             }
         }
-
+        val navigationMap = mapOf(
+            R.id.navigation_settings to settingsContainer,
+            R.id.navigation_home to homeContainer,
+            R.id.navigation_plugins to pluginManagerContainer
+        )
         navigationBarView.setOnItemSelectedListener {item ->
-            when(item.itemId) {
-                R.id.navigation_settings -> {
-                    settingsContainer.visibility = View.VISIBLE
-                    homeContainer.visibility = View.GONE
-                    true
+            navigationMap.forEach { (t, u) ->
+                if (t == item.itemId) {
+                    u.visibility = View.VISIBLE
+                    if (t == R.id.navigation_plugins) {
+                        refreshPluginList()
+                    }
+                } else {
+                    u.visibility = View.GONE
                 }
-                R.id.navigation_home -> {
-                    settingsContainer.visibility = View.GONE
-                    homeContainer.visibility = View.VISIBLE
-                    true
-                }
-                else -> false
             }
+            true
         }
 
+        // Handle recycler view within settings activity
+        pluginManager = PluginManager(this)
+        pluginsRecyclerView = findViewById<RecyclerView>(R.id.plugins_recycler_view).apply {
+            layoutManager = LinearLayoutManager(this@SettingsActivity)
+        }
+        val plugins = pluginManager.getPlugins()
+        pluginAdapter = PluginListAdapter(plugins, pluginManager)
+        pluginsRecyclerView.adapter = pluginAdapter
+
+    }
+
+    private fun refreshPluginList() {
+        val plugins = pluginManager.getPlugins()
+        pluginAdapter.updatePlugins(plugins)
     }
 
     override fun onDestroy() {

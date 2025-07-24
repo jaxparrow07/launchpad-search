@@ -70,27 +70,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/settings_plugins_title">
-
-
-        <MultiSelectListPreference
-            app:icon="@drawable/baseline_settings_applications_24"
-            app:key="setting_search_plugins"
-            app:title="@string/settings_plugins_enabled"
-            app:summary="@string/settings_plugins_enabled_summary"
-
-            app:entries="@array/available_plugins"
-            app:entryValues="@array/available_plugins_id"
-            android:defaultValue="@array/empty_array"
-         />
-
-<!--        <Preference-->
-<!--            app:title="3rd Party Plugins"-->
-<!--            app:summary="Support for 3rd party plugins along with options for existing plugins are being worked on." />-->
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         app:title="Plugin Settings">
 
         <ListPreference
