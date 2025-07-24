@@ -6,10 +6,7 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import com.devrinth.launchpad.BuildConfig
 import com.devrinth.launchpad.adapters.ResultAdapter
-import com.devrinth.launchpad.db.AppDatabase
-import com.devrinth.launchpad.db.CachedApp
 import com.devrinth.launchpad.search.SearchPlugin
-import com.devrinth.launchpad.utils.IconUtils
 import com.devrinth.launchpad.utils.IntentUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +44,7 @@ class LauncherPlugin(mContext: Context) : SearchPlugin(mContext) {
 
     private suspend fun filterApps(query: String): List<ResultAdapter> {
         return withContext(Dispatchers.Default) {
-            var currentList = appList
+            val currentList = appList
             val filteredApps = arrayListOf<ResultAdapter>()
 
             if(query.startsWith(lastQuery) && lastFilteredList.isNotEmpty()) {
