@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.text.contains
 
-class LauncherPlugin(mContext: Context) : SearchPlugin(mContext) {
+class AppsPlugin(mContext: Context) : SearchPlugin(mContext) {
+
+    override var ID = "apps"
 
     private lateinit var appList : List<ResolveInfo>
     private lateinit var mPackageManager : PackageManager
