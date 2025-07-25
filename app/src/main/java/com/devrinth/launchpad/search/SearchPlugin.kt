@@ -31,8 +31,8 @@ open class SearchPlugin(
         INIT = false
     }
 
-    fun getPluginSetting(pluginSetting: String, defaultValue: String): Any {
-        return mPluginManager.getPluginSetting(ID, pluginSetting, "")
+    fun getPluginSetting(pluginSetting: String, defaultValue: Any): Any {
+        return mPluginManager.getPluginSetting(ID, pluginSetting, defaultValue)
     }
 
     fun pluginResult(list : List<ResultAdapter>, query : String) {

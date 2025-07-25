@@ -1,8 +1,6 @@
 package com.devrinth.launchpad.search.plugins
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
-import androidx.preference.PreferenceManager
 import com.devrinth.launchpad.R
 import com.devrinth.launchpad.adapters.ResultAdapter
 import com.devrinth.launchpad.search.SearchPlugin
@@ -67,7 +65,7 @@ class SearchSuggestionsPlugin(mContext: Context) : SearchPlugin(mContext) {
                 val suggestionArray = mainObj.getJSONArray(1)
 
                 for (i in 0 until suggestionArray.length() ) {
-                    if (i > 4)
+                    if (i > getPluginSetting("max", 5) as Int - 1)
                         break
                     val suggestion = suggestionArray.getString(i)
                     searchSuggestions.add(
