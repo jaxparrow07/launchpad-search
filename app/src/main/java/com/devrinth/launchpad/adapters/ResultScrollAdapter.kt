@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devrinth.launchpad.R
@@ -35,7 +36,12 @@ class ResultScrollAdapter(private val mResults: List<ResultAdapter>, private var
                 VoiceInteractionSessionService.RECEIVER_EXPORTED
             )
         } else {
-            mContext.registerReceiver(reloadReceiver, IntentFilter(AssistantActionReceiver.ACTION_OVERLAY_SHOW))
+            ContextCompat.registerReceiver(
+                mContext,
+                reloadReceiver,
+                IntentFilter(AssistantActionReceiver.ACTION_OVERLAY_SHOW),
+                ContextCompat.RECEIVER_EXPORTED
+            )
         }
     }
 
@@ -72,9 +78,23 @@ class ResultScrollAdapter(private val mResults: List<ResultAdapter>, private var
                 }
                 mContext.startActivity( mResultAdapter.action1 )
             }
+
         } else {
             holder.parentView.setOnClickListener {  }
         }
+
+        if (mResultAdapter.action2 != null) {
+            holder.parentView.setOnLongClickListener {
+                if (closeOnClick) {
+                    mContext.sendBroadcast(Intent(AssistantActionReceiver.ACTION_OVERLAY_HIDE))
+                }
+                mContext.startActivity(mResultAdapter.action2)
+                true
+            }
+        } else {
+            holder.parentView.setOnClickListener {  }
+        }
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
