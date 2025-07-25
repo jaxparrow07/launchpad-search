@@ -5,6 +5,7 @@ import com.devrinth.launchpad.R
 import com.devrinth.launchpad.adapters.ResultAdapter
 import com.devrinth.launchpad.search.SearchPlugin
 import com.devrinth.launchpad.utils.IntentUtils
+import com.devrinth.launchpad.utils.StringUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,8 +13,6 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 class SearchSuggestionsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
@@ -73,7 +72,7 @@ class SearchSuggestionsPlugin(mContext: Context) : SearchPlugin(mContext) {
                             suggestion,
                             null,
                             null,
-                            IntentUtils.getLinkIntent( searchEngineQ.format( URLEncoder.encode(suggestion, StandardCharsets.UTF_8.toString()) ) ),
+                            IntentUtils.getLinkIntent( searchEngineQ.format( StringUtils.encodeUrl(query) ) ),
                             null
                         )
                     )
@@ -82,7 +81,6 @@ class SearchSuggestionsPlugin(mContext: Context) : SearchPlugin(mContext) {
                 searchSuggestions
 
             } catch (e : Exception) {
-                Log.e("jaxy", e.toString())
                 emptyList()
             }
         }

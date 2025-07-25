@@ -7,6 +7,7 @@ import com.devrinth.launchpad.R
 import com.devrinth.launchpad.adapters.ResultAdapter
 import com.devrinth.launchpad.search.SearchPlugin
 import com.devrinth.launchpad.utils.IntentUtils
+import com.devrinth.launchpad.utils.StringUtils
 
 class SettingsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
@@ -36,7 +37,7 @@ class SettingsPlugin(mContext: Context) : SearchPlugin(mContext) {
         val filteredSettings = arrayListOf<ResultAdapter>()
 
         settingsMap.forEach{ (key, value) ->
-            if (key.replace("-", "").contains(query, ignoreCase = true))
+            if (StringUtils.simpleContains(query, key))
                 filteredSettings.add(
                     ResultAdapter(
                         key,

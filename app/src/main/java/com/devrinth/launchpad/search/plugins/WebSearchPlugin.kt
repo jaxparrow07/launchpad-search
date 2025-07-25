@@ -1,17 +1,12 @@
 package com.devrinth.launchpad.search.plugins
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.preference.PreferenceManager
 import com.devrinth.launchpad.R
 import com.devrinth.launchpad.adapters.ResultAdapter
 import com.devrinth.launchpad.search.SearchPlugin
 import com.devrinth.launchpad.utils.IntentUtils
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
-
+import com.devrinth.launchpad.utils.StringUtils
 
 class WebSearchPlugin(mContext: Context) : SearchPlugin(mContext) {
 
@@ -29,7 +24,7 @@ class WebSearchPlugin(mContext: Context) : SearchPlugin(mContext) {
                     mContext.resources.getString(R.string.plugin_search_result).format(searchEngine, query),
                     null,
                     AppCompatResources.getDrawable(mContext, R.drawable.web_search_24),
-                    IntentUtils.getLinkIntent( searchEngineQ.format( URLEncoder.encode(query, StandardCharsets.UTF_8.toString()) ) ),
+                    IntentUtils.getLinkIntent( searchEngineQ.format( StringUtils.encodeUrl(query) ) ),
                     null
                 )
             ),

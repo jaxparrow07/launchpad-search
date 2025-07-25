@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.devrinth.launchpad.R
 import androidx.core.content.edit
+import com.devrinth.launchpad.utils.StringUtils
 
 class PluginSettingsFragment : PreferenceFragmentCompat() {
 
@@ -64,7 +65,7 @@ class PluginSettingsFragment : PreferenceFragmentCompat() {
                 try {
                     val url = newValue.toString()
                     // Basic URL validation
-                    if (url.contains("%s") && (url.startsWith("http://") || url.startsWith("https://"))) {
+                    if ( StringUtils.simpleContains(url, "%s") && StringUtils.isValidUrl(url) ) {
                         true
                     } else {
                         android.widget.Toast.makeText(
