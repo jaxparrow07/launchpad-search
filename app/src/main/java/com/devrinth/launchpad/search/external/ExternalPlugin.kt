@@ -49,7 +49,7 @@ class ExternalSearch(var mContext: Context) {
         }
     }
 
-    private fun bindAvailablePlugins() {
+    fun bindAvailablePlugins() {
         val intent = Intent("com.devrinth.launchpad.PLUGIN_SERVICE")
         val pm = mContext.packageManager
         val services = pm.queryIntentServices(intent, PackageManager.GET_META_DATA)

@@ -187,7 +187,9 @@ class SearchManager(
         actionSearchOpen = sharedPreferences.getBoolean("setting_top_result_default", true)
         enabledPlugins = sharedPreferences.getStringSet("setting_search_plugins", pluginsMap.keys)
 
+        externalSearch.unloadPlugins()
         pluginList = arrayListOf()
+
         CoroutineScope(Dispatchers.Main).launch {
             pluginsMap.forEach { plugin ->
                 val isInternalPlugin = plugin.key.contains("int-")
@@ -196,6 +198,9 @@ class SearchManager(
                 }
             }
         }
+
+        externalSearch.bindAvailablePlugins()
+
     }
 
     private fun addSearchSuggestions(suggestions: List<ResultAdapter>, query: String) {
