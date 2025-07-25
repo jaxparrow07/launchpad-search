@@ -73,10 +73,9 @@ class SearchManager(
 
     private var enabledPlugins: MutableSet<String>? = null
 
-    private val TAG : String = "PLUGIN MANAGER"
-
     private var firstQuery: Boolean = true
 
+    private val TAG : String = "PLUGIN MANAGER"
 
     init {
         searchSuggestionsView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
@@ -123,6 +122,18 @@ class SearchManager(
     }
 
     fun unloadPlugins() {
+        enabledPlugins?.forEach {
+            val plugin = pluginsMap[it]
+            if (plugin != null) {
+                try {
+                    plugin.pluginUnInit()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error unloading plugin $it: ${e.localizedMessage}")
+                }
+            } else {
+                Log.w(TAG, "Plugin $it not found in pluginsMap")
+            }
+        }
         enabledPlugins = null
         externalSearch.unloadPlugins()
     }

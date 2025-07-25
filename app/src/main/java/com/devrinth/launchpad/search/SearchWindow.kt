@@ -207,6 +207,10 @@ class SearchWindow(val context: Context) {
         mSearchManager.unloadPlugins()
     }
 
+    fun reload() {
+        mSearchManager.reloadPlugins()
+    }
+
     // -- WINDOW FUNCTION
     fun showWindow() {
         if (!mContentView.isShown)
