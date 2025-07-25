@@ -23,11 +23,21 @@
         <item>shortcuts</item>
     </string-array>
 
-
+    <!--  Credits to machiav3lli for additional search engines, changes added directly since project was under refactoring /-->
     <string-array translatable="false" name="available_web_search">
         <item>Google</item>
         <item>DuckDuckGo</item>
         <item>Bing</item>
+        <item>Brave</item>
+        <item>Ecosia</item>
+        <item>Qwant</item>
+        <item>Reddit</item>
+        <item>Metager</item>
+        <item>Startpage</item>
+        <item>Swisscows</item>
+        <item>Wolfram Alpha</item>
+        <item>Perplexity</item>
+        <item>Phind</item>
         <item>Custom</item>
     </string-array>
 
@@ -35,6 +45,16 @@
         <item>@string/search_google_query</item>
         <item>@string/search_duckduckgo_query</item>
         <item>@string/search_bing_query</item>
+        <item>@string/search_brave_query</item>
+        <item>@string/search_ecosia_query</item>
+        <item>@string/search_qwant_query</item>
+        <item>@string/search_reddit_query</item>
+        <item>@string/search_metager_query</item>
+        <item>@string/search_startpage_query</item>
+        <item>@string/search_swisscows_query</item>
+        <item>@string/search_wolframalpha_query</item>
+        <item>@string/search_perplexity_query</item>
+        <item>@string/search_phind_query</item>
         <item>custom</item>
     </string-array>
 
