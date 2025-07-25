@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Unit Conversion Settings">
+
+    <SeekBarPreference
+        app:key="plugin_units_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="0"
+        android:min="0"
+        android:max="5"
+    />
+
+    <ListPreference
+        app:key="plugin_units_temperature_default"
+        app:title="Default temperature unit"
+        app:summary="Primary unit for temperature conversions"
+        app:entries="@array/temperature_units"
+        app:entryValues="@array/temperature_unit_values"
+        app:defaultValue="celsius" />
+
+    <ListPreference
+        app:key="plugin_units_length_default"
+        app:title="Default length unit"
+        app:summary="Primary unit for length conversions"
+        app:entries="@array/length_units"
+        app:entryValues="@array/length_unit_values"
+        app:defaultValue="meter" />
+
+    <CheckBoxPreference
+        app:key="plugin_units_show_multiple"
+        app:defaultValue="true"
+        app:title="Show multiple conversions"
+        app:summary="Display conversions to multiple related units" />
+
+</PreferenceScreen>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Settings Plugin Settings">
+
+    <SeekBarPreference
+        app:key="plugin_settings_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="1"
+        android:min="0"
+        android:max="5"
+    />
+
+    <CheckBoxPreference
+        app:key="plugin_settings_show_system"
+        app:defaultValue="true"
+        app:title="Show system settings"
+        app:summary="Include system settings in search results" />
+
+    <CheckBoxPreference
+        app:key="plugin_settings_show_developer"
+        app:defaultValue="false"
+        app:title="Show developer options"
+        app:summary="Include developer settings when available" />
+
+</PreferenceScreen>

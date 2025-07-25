@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Apps Plugin Settings">
+
+    <SeekBarPreference
+        app:key="plugin_apps_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="0"
+        android:min="0"
+        android:max="5"
+        />
+
+    <CheckBoxPreference
+        app:key="plugin_apps_show_system"
+        app:defaultValue="false"
+        app:title="Show system apps"
+        app:summary="Include system applications in search results" />
+
+    <CheckBoxPreference
+        app:key="plugin_apps_show_shortcuts"
+        app:defaultValue="true"
+        app:title="Show app shortcuts"
+        app:summary="Display dynamic shortcuts for supported apps" />
+
+    <ListPreference
+        app:key="plugin_apps_sort_order"
+        app:title="Sort order"
+        app:summary="How to order app search results"
+        app:entries="@array/apps_sort_entries"
+        app:entryValues="@array/apps_sort_values"
+        app:defaultValue="usage" />
+
+</PreferenceScreen>

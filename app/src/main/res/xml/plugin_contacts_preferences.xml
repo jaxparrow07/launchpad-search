@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Contacts Plugin Settings">
+
+    <SeekBarPreference
+        app:key="plugin_contacts_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="0"
+        android:min="0"
+        android:max="5"
+    />
+
+
+    <CheckBoxPreference
+        app:key="plugin_contacts_search_phone"
+        app:defaultValue="true"
+        app:title="Search phone numbers"
+        app:summary="Include phone numbers in contact search" />
+
+    <CheckBoxPreference
+        app:key="plugin_contacts_search_email"
+        app:defaultValue="true"
+        app:title="Search email addresses"
+        app:summary="Include email addresses in contact search" />
+
+</PreferenceScreen>

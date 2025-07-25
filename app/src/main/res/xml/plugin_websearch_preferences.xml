@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Web Search Settings">
+
+    <SeekBarPreference
+        app:key="plugin_websearch_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="1"
+        android:min="0"
+        android:max="5"
+    />
+
+    <ListPreference
+        app:key="plugin_websearch_engine"
+        app:title="@string/settings_plugin_search"
+        app:summary="@string/settings_plugin_search_summary"
+        app:entries="@array/available_web_search"
+        app:entryValues="@array/available_web_search_query"
+        app:defaultValue="@string/search_google_query" />
+
+    <EditTextPreference
+        android:key="plugin_websearch_custom_engine"
+        app:title="@string/settings_plugin_search_query"
+        app:summary="@string/settings_plugin_search_query_summary"
+        app:defaultValue="https://www.google.com/search?q=%s" />
+
+</PreferenceScreen>

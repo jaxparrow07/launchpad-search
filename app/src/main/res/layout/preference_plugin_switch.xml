@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+        <ImageView
+            android:id="@+id/plugin_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_extension_24"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/plugin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plugin Title"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/plugin_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plugin description"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/plugin_settings_button"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:icon="@drawable/baseline_settings_24"
+        android:contentDescription="Plugin settings" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/plugin_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:clickable="false" />
+
+</LinearLayout>

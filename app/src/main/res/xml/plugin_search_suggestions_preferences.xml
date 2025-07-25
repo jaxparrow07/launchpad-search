@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Search Suggestions Settings">
+
+    <Preference
+        app:title="Note"
+        app:summary="This feature uses web search engines to provide search suggestions as you type. These suggestions appear separately from the main search results and do not have priority ordering since they operate independently of the results UI."
+        app:selectable="false" />
+
+    <SeekBarPreference
+        app:key="plugin_search_suggestions_max"
+        app:title="Suggestion keywords"
+        app:summary="Number of recent suggestions to show"
+        app:showSeekBarValue="true"
+        android:max="10"
+        android:min="1"
+        android:defaultValue="5"
+ />
+
+
+</PreferenceScreen>

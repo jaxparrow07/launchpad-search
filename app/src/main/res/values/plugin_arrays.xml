@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Calculator precision arrays -->
+    <string-array name="calc_precision_entries">
+        <item>0 decimal places</item>
+        <item>1 decimal place</item>
+        <item>2 decimal places</item>
+        <item>3 decimal places</item>
+        <item>4 decimal places</item>
+        <item>5 decimal places</item>
+    </string-array>
+
+    <string-array name="calc_precision_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- Temperature units arrays -->
+    <string-array name="temperature_units">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+
+    <string-array name="temperature_unit_values">
+        <item>celsius</item>
+        <item>fahrenheit</item>
+        <item>kelvin</item>
+    </string-array>
+
+    <!-- Length units arrays -->
+    <string-array name="length_units">
+        <item>Meter</item>
+        <item>Feet</item>
+        <item>Inch</item>
+        <item>Centimeter</item>
+        <item>Kilometer</item>
+        <item>Mile</item>
+    </string-array>
+
+    <string-array name="length_unit_values">
+        <item>meter</item>
+        <item>feet</item>
+        <item>inch</item>
+        <item>centimeter</item>
+        <item>kilometer</item>
+        <item>mile</item>
+    </string-array>
+
+    <!-- Apps sort arrays -->
+    <string-array name="apps_sort_entries">
+        <item>Most used</item>
+        <item>Alphabetical</item>
+        <item>Recently installed</item>
+        <item>Recently used</item>
+    </string-array>
+
+    <string-array name="apps_sort_values">
+        <item>usage</item>
+        <item>alphabetical</item>
+        <item>install_date</item>
+        <item>recent_usage</item>
+    </string-array>
+
+    <!-- Contacts display arrays -->
+    <string-array name="contacts_display_entries">
+        <item>Name and phone</item>
+        <item>Name only</item>
+        <item>Name and email</item>
+        <item>Full details</item>
+    </string-array>
+
+    <string-array name="contacts_display_values">
+        <item>name_phone</item>
+        <item>name_only</item>
+        <item>name_email</item>
+        <item>full_details</item>
+    </string-array>
+
+    <!-- Settings group arrays -->
+    <string-array name="settings_group_entries">
+        <item>By category</item>
+        <item>Alphabetical</item>
+        <item>Most used</item>
+    </string-array>
+
+    <string-array name="settings_group_values">
+        <item>category</item>
+        <item>alphabetical</item>
+        <item>usage</item>
+    </string-array>
+
+    <!-- History count arrays -->
+    <string-array name="history_count_entries">
+        <item>5 items</item>
+        <item>10 items</item>
+        <item>20 items</item>
+        <item>50 items</item>
+        <item>100 items</item>
+    </string-array>
+
+    <string-array name="history_count_values">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>50</item>
+        <item>100</item>
+    </string-array>
+</resources>
+

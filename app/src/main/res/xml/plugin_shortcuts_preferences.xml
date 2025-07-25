@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Web Search Settings">
+
+    <SeekBarPreference
+        app:key="plugin_shortcuts_priority"
+        app:title="Result priority"
+        app:summary="0 = highest, 5 = lowest"
+        app:showSeekBarValue="true"
+        android:defaultValue="0"
+        android:min="0"
+        android:max="5"
+    />
+
+
+</PreferenceScreen>
