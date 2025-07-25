@@ -16,13 +16,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.devrinth.launchpad.BuildConfig
 import com.devrinth.launchpad.R
-import com.devrinth.launchpad.adapters.PluginListAdapter
 import com.devrinth.launchpad.fragments.LaunchPadPreferences
-import com.devrinth.launchpad.plugins.PluginManager
+import com.devrinth.launchpad.fragments.PluginManagerPreferences
 import com.devrinth.launchpad.receivers.AssistantActionReceiver
 import com.devrinth.launchpad.services.LaunchpadTileService
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,11 +33,6 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var homeContainer : View
     private lateinit var navigationBarView: BottomNavigationView
 
-    private lateinit var pluginManager: PluginManager
-    private lateinit var pluginAdapter: PluginListAdapter
-    private lateinit var pluginsRecyclerView: RecyclerView
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_layout)
@@ -50,8 +42,14 @@ class SettingsActivity : AppCompatActivity() {
 
         window.statusBarColor = surfaceColor
 
+        // Initialize the new preference-based plugin management
         supportFragmentManager.beginTransaction()
             .replace(R.id.settings_container, LaunchPadPreferences())
+            .commit()
+
+        // Initialize the plugin manager preferences
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.plugin_preferences_container, PluginManagerPreferences())
             .commit()
 
         initViews()
@@ -180,30 +178,12 @@ class SettingsActivity : AppCompatActivity() {
             navigationMap.forEach { (t, u) ->
                 if (t == item.itemId) {
                     u.visibility = View.VISIBLE
-                    if (t == R.id.navigation_plugins) {
-                        refreshPluginList()
-                    }
                 } else {
                     u.visibility = View.GONE
                 }
             }
             true
         }
-
-        // Handle recycler view within settings activity
-        pluginManager = PluginManager(this)
-        pluginsRecyclerView = findViewById<RecyclerView>(R.id.plugins_recycler_view).apply {
-            layoutManager = LinearLayoutManager(this@SettingsActivity)
-        }
-        val plugins = pluginManager.getPlugins()
-        pluginAdapter = PluginListAdapter(plugins, pluginManager)
-        pluginsRecyclerView.adapter = pluginAdapter
-
-    }
-
-    private fun refreshPluginList() {
-        val plugins = pluginManager.getPlugins()
-        pluginAdapter.updatePlugins(plugins)
     }
 
     override fun onDestroy() {
