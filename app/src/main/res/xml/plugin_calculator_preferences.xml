@@ -8,7 +8,7 @@
         app:title="Result priority"
         app:summary="0 = highest, 5 = lowest"
         app:showSeekBarValue="true"
-        android:defaultValue="0"
+        android:defaultValue="1"
         android:min="0"
         android:max="5"
         />
