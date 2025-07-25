@@ -8,6 +8,7 @@ import com.devrinth.launchpad.BuildConfig
 import com.devrinth.launchpad.adapters.ResultAdapter
 import com.devrinth.launchpad.search.SearchPlugin
 import com.devrinth.launchpad.utils.IntentUtils
+import com.devrinth.launchpad.utils.StringUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +52,7 @@ class AppsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
             if(query.startsWith(lastQuery) && lastFilteredList.isNotEmpty()) {
                 lastFilteredList.forEach {
-                    if(it.value.contains(query, ignoreCase = true) || it.extra?.contains(query, ignoreCase = true) == true) {
+                    if(StringUtils.fuzzyContains(query, it.value) || StringUtils.simpleContains(query, it.extra!! )) {
                         filteredApps.add(it)
                     }
                 }
@@ -59,7 +60,7 @@ class AppsPlugin(mContext: Context) : SearchPlugin(mContext) {
                 for (ri in currentList) {
                     if (ri.activityInfo.packageName != BuildConfig.APPLICATION_ID) {
                         val label = ri.loadLabel(mPackageManager).toString()
-                        if (label.contains(query, ignoreCase = true) || ri.activityInfo.packageName.contains(query, ignoreCase = true)) {
+                        if (StringUtils.fuzzyContains(query, label) || StringUtils.simpleContains(query, ri.activityInfo.packageName)) {
                             filteredApps.add(
                                 ResultAdapter(
                                     label,
