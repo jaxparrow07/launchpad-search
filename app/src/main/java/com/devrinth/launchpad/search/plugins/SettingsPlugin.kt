@@ -11,6 +11,7 @@ import com.devrinth.launchpad.utils.IntentUtils
 class SettingsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
     override var PRIORITY = 1
+    override var ID = "settings"
 
     private val settingsMap = mapOf(
         "Wi-Fi Settings" to Settings.ACTION_WIFI_SETTINGS,

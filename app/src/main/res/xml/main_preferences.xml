@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:title="Search">
@@ -15,10 +14,8 @@
         <CheckBoxPreference
             app:key="setting_clear_search"
             app:defaultValue="true"
-
             app:title="@string/settings_clear_search"
-            app:summary="@string/settings_clear_search_summary"
-            />
+            app:summary="@string/settings_clear_search_summary" />
 
     </PreferenceCategory>
 
@@ -29,87 +26,62 @@
             app:key="setting_close_on_outclick"
             app:defaultValue="false"
             app:title="@string/settings_close_on_outclick"
-            app:summary="@string/settings_close_on_outclick_summary"
-
-        />
+            app:summary="@string/settings_close_on_outclick_summary" />
 
         <CheckBoxPreference
             app:key="setting_close_on_action"
             app:defaultValue="true"
-
             app:title="@string/settings_close_on_action"
-            app:summary="@string/settings_close_on_action_summary"
-
-        />
+            app:summary="@string/settings_close_on_action_summary" />
 
         <CheckBoxPreference
             app:key="setting_top_result_default"
             app:defaultValue="true"
-
             app:title="@string/settings_top_result_default"
-            app:summary="@string/settings_top_result_default_summary"
-        />
+            app:summary="@string/settings_top_result_default_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory
         app:title="@string/settings_layout_title">
+
         <SwitchPreference
             app:key="setting_layout_blur_behind"
             app:title="@string/settings_layout_blur"
             app:summary="@string/settings_layout_blur_summary"
+            android:defaultValue="false" />
 
-            android:defaultValue="false"
-            />
         <SwitchPreference
             app:key="setting_layout_window_alternate"
             app:title="@string/settings_layout_bottom"
             app:summary="@string/settings_layout_bottom_summary"
-
-            android:defaultValue="false"
-            />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:title="Plugin Settings">
-
-        <ListPreference
-            app:key="setting_search_plugin_engine"
-            app:title="@string/settings_plugin_search"
-            app:summary="@string/settings_plugin_search_summary"
-
-            app:entries="@array/available_web_search"
-            app:entryValues="@array/available_web_search_query"
-            app:defaultValue="@string/search_google_query"
-            />
-
-        <EditTextPreference
-            android:key="setting_search_plugin_custom_engine"
-            app:title="@string/settings_plugin_search_query"
-            app:summary="@string/settings_plugin_search_query_summary"
-            app:defaultValue="https://www.google.com/search?q=\%s"
-            />
-
+            android:defaultValue="false" />
     </PreferenceCategory>
 
     <PreferenceCategory
         app:title="About">
+
         <Preference
             android:icon="@drawable/baseline_coffee_24"
             app:key="setting_about_bmc"
             app:title="Buy me a coffee"
             app:summary="To keep the project ad-free and help me maintain the project" />
+
         <Preference
             app:key="setting_about_app_version"
             app:title="App Version"
             app:summary="Unknown" />
+
         <Preference
             app:key="setting_about_mail"
             app:title="Email"/>
+
         <Preference
             app:key="setting_about_website"
             app:title="Website"/>
+
         <Preference
             app:key="setting_about_privacy"
             app:title="Privacy Policy"/>
     </PreferenceCategory>
+
 </PreferenceScreen>

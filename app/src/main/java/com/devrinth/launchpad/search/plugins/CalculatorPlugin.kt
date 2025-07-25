@@ -9,6 +9,8 @@ import com.notkamui.keval.Keval
 
 class CalculatorPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var ID = "calculator"
+
     override fun pluginProcess(query: String) {
         super.pluginProcess(query)
 

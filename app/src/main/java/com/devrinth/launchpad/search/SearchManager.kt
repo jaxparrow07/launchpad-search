@@ -43,11 +43,10 @@ class SearchManager(
     private var pluginList = arrayListOf<SearchPlugin>()
     private var pluginsMap = mapOf(
 
-        "search-suggestions" to SearchSuggestionsPlugin(mContext),
-
-        "apps" to LauncherPlugin(mContext),
+        "search_suggestions" to SearchSuggestionsPlugin(mContext),
+        "apps" to AppsPlugin(mContext),
         "contacts" to ContactsPlugin(mContext),
-        "calc" to CalculatorPlugin(mContext),
+        "calculator" to CalculatorPlugin(mContext),
         "websearch" to WebSearchPlugin(mContext),
         "units" to UnitConversionPlugin(mContext),
         "settings" to SettingsPlugin(mContext),
@@ -154,12 +153,12 @@ class SearchManager(
 
                 if (!isInternalPlugin) {
 
-                    if (pluginName == "search-suggestions") {
+                    if (pluginName == "search_suggestions") {
                         addSearchSuggestions(resultArray, query)
                     } else {
                         if (plugin.PRIORITY > 0) {
                             CoroutineScope(Dispatchers.Main).launch {
-                                kotlinx.coroutines.delay((100 * (plugin.PRIORITY).toLong()))
+                                kotlinx.coroutines.delay((80 * (plugin.PRIORITY).toLong()))
                                 addResults(resultArray, query, pluginName)
                             }
                         } else {

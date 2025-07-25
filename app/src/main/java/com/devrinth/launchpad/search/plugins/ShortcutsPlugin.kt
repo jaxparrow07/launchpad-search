@@ -18,6 +18,8 @@ import kotlinx.coroutines.withContext
 
 class ShortcutsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var ID = "shortcuts"
+
     private lateinit var mPackageManager: PackageManager
     private lateinit var mLauncherApps: LauncherApps
 

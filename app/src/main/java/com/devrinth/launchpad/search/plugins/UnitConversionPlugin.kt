@@ -10,7 +10,10 @@ import java.util.regex.Pattern
 
 class UnitConversionPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var ID = "units"
+
     private fun convertLength(input: String): String {
+
         val unitsToMeters = mapOf(
             "mm" to 0.001, "millimeter" to 0.001, "millimeters" to 0.001,
             "cm" to 0.01, "centimeter" to 0.01, "centimeters" to 0.01,
@@ -23,6 +26,7 @@ class UnitConversionPlugin(mContext: Context) : SearchPlugin(mContext) {
         )
 
         return convert(input, unitsToMeters)
+
     }
 
     private fun convertMass(input: String): String {

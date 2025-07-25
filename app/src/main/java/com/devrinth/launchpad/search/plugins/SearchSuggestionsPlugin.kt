@@ -19,22 +19,25 @@ import java.nio.charset.StandardCharsets
 
 class SearchSuggestionsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
-    private val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext)
-    private lateinit var searchEngineQ : String
+    override var ID = "search_suggestions"
 
     private var isProcessing = false
 
     private val client = OkHttpClient()
-
     private val GOOGLE_API = "https://suggestqueries.google.com/complete/search?client=firefox&q=%s"
+
+    private lateinit var searchEngineQ : String
 
     override fun pluginInit() {
         super.pluginInit()
-        val search = sharedPreferences.getString("setting_search_plugin_engine", mContext.resources.getString(R.string.search_google_query) ).toString().split("|")[0]
+
+        // This reads the plugin settings from the "websearch" plugin
+        val PARENT_PLUGIN_ID = "websearch"
+        val search = (mPluginManager.getPluginSetting(PARENT_PLUGIN_ID,"engine", mContext.resources.getString(R.string.search_google_query) ) as String).toString().split("|")[0]
         searchEngineQ = if (search != "custom") {
-            sharedPreferences.getString("setting_search_plugin_engine", mContext.resources.getString(R.string.search_google_query) ).toString().split("|")[1]
+            ( mPluginManager.getPluginSetting(PARENT_PLUGIN_ID,"engine", mContext.resources.getString(R.string.search_google_query)) as String ).split("|")[1]
         } else {
-            sharedPreferences.getString("setting_search_plugin_custom_engine", mContext.resources.getString(R.string.search_google_query).split("|")[1] ).toString()
+            ( mPluginManager.getPluginSetting(PARENT_PLUGIN_ID,"custom_engine", mContext.resources.getString(R.string.search_google_query)) as String ).split("|")[1]
         }
 
     }

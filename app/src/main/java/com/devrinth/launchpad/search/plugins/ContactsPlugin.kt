@@ -20,6 +20,8 @@ import kotlinx.coroutines.withContext
 
 class ContactsPlugin(mContext: Context) : SearchPlugin(mContext) {
 
+    override var ID = "contacts"
+
     private lateinit var mContentResolver : ContentResolver
     private val nameProjection = arrayOf(
         ContactsContract.Contacts._ID,

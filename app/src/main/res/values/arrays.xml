@@ -13,8 +13,8 @@
     </string-array>
 
     <string-array translatable="false" name="available_plugins_id">
-        <item>search-suggestions</item>
-        <item>calc</item>
+        <item>search_suggestions</item>
+        <item>calculator</item>
         <item>websearch</item>
         <item>units</item>
         <item>apps</item>

@@ -2,6 +2,7 @@ package com.devrinth.launchpad.search.plugins
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.preference.PreferenceManager
 import com.devrinth.launchpad.R
@@ -15,8 +16,7 @@ import java.nio.charset.StandardCharsets
 class WebSearchPlugin(mContext: Context) : SearchPlugin(mContext) {
 
     override var PRIORITY = 1
-
-    private val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext)
+    override var ID = "websearch"
 
     private lateinit var searchEngine : String
     private lateinit var searchEngineQ : String
@@ -39,18 +39,15 @@ class WebSearchPlugin(mContext: Context) : SearchPlugin(mContext) {
 
     override fun pluginInit() {
         super.pluginInit()
+        val search = (getPluginSetting("engine", mContext.resources.getString(R.string.search_google_query) ) as String).toString().split("|")[0]
 
-        val search = sharedPreferences.getString("setting_search_plugin_engine", mContext.resources.getString(R.string.search_google_query) ).toString().split("|")[0]
+        searchEngine = if (search == "custom") { mContext.resources.getString(R.string.search_engine_custom) } else { search }
 
-        searchEngine = if (search.equals("custom")) { mContext.resources.getString(R.string.search_engine_custom) } else {search}
-
-        if (!search.equals("custom")) {
-            searchEngineQ =
-                sharedPreferences.getString("setting_search_plugin_engine", mContext.resources.getString(R.string.search_google_query) ).toString().split("|")[1]
+        searchEngineQ = if (search != "custom") {
+            ( getPluginSetting("engine", mContext.resources.getString(R.string.search_google_query)) as String ).split("|")[1]
         } else {
-            searchEngineQ = sharedPreferences.getString("setting_search_plugin_custom_engine", mContext.resources.getString(R.string.search_google_query).split("|")[1] ).toString()
+            ( getPluginSetting("custom_engine", mContext.resources.getString(R.string.search_google_query)) as String ).split("|")[1]
         }
-
     }
 
 

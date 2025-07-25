@@ -7,21 +7,21 @@ import com.devrinth.launchpad.R
 import com.devrinth.launchpad.adapters.PluginAdapter
 import androidx.core.content.edit
 
-class PluginManager(private val context: Context) {
+class PluginManager(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(context)
 
-    // Dummy data for available plugins
+    // Enhanced plugin data with settings screen mapping
     private val availablePlugins = listOf(
         PluginAdapter(
-            id = "search-suggestions",
+            id = "search_suggestions",
             title = "Search Suggestions",
             description = "Shows search suggestions and history",
             iconResource = R.drawable.baseline_search_24
         ),
         PluginAdapter(
-            id = "calc",
+            id = "calculator",
             title = "Calculator",
             description = "Perform calculations directly in search",
             iconResource = R.drawable.baseline_calculate_24
@@ -71,6 +71,18 @@ class PluginManager(private val context: Context) {
         }
     }
 
+    fun getPlugin(pluginId: String): PluginAdapter? {
+        return getPlugins().find { it.id == pluginId }
+    }
+
+    fun hasSettings(pluginId: String): Boolean {
+        // Check if plugin has dedicated settings screen
+        return when (pluginId) {
+            "websearch", "calculator", "units", "apps", "contacts", "settings", "search_suggestions" -> true
+            else -> false
+        }
+    }
+
     // This logic ensures this is backwards compatible with previous versions, and doesn't need much maintenance
     // since new plugins are going to be external anyways.
     private fun getEnabledPluginIds(): Set<String> {
@@ -89,6 +101,8 @@ class PluginManager(private val context: Context) {
         sharedPreferences.edit {
             putStringSet("setting_search_plugins", currentEnabled)
         }
+
+        notifyStateChange(pluginId, enabled)
     }
 
     fun togglePlugin(pluginId: String): Boolean {
@@ -96,6 +110,31 @@ class PluginManager(private val context: Context) {
         val newState = !currentEnabled.contains(pluginId)
         setPluginEnabled(pluginId, newState)
         return newState
+    }
+
+    fun getPluginSetting(pluginId: String, settingKey: String, defaultValue: Any): Any {
+        val fullKey = "plugin_${pluginId}_$settingKey"
+        return when (defaultValue) {
+            is String -> sharedPreferences.getString(fullKey, defaultValue) ?: defaultValue
+            is Boolean -> sharedPreferences.getBoolean(fullKey, defaultValue)
+            is Int -> sharedPreferences.getInt(fullKey, defaultValue)
+            is Float -> sharedPreferences.getFloat(fullKey, defaultValue)
+            is Long -> sharedPreferences.getLong(fullKey, defaultValue)
+            else -> defaultValue
+        }
+    }
+
+    fun setPluginSetting(pluginId: String, settingKey: String, value: Any) {
+        val fullKey = "plugin_${pluginId}_$settingKey"
+        sharedPreferences.edit {
+            when (value) {
+                is String -> putString(fullKey, value)
+                is Boolean -> putBoolean(fullKey, value)
+                is Int -> putInt(fullKey, value)
+                is Float -> putFloat(fullKey, value)
+                is Long -> putLong(fullKey, value)
+            }
+        }
     }
 
     interface PluginStateChangeListener {
