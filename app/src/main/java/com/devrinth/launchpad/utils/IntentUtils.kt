@@ -28,6 +28,10 @@ class IntentUtils {
             return Intent(Intent.ACTION_DIAL, Uri.parse("tel:$number")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
+        fun getEmailIntent(email: String) : Intent {
+            return Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
         fun getIntentFromString(action : String, uri : String) : Intent {
             return Intent( action, Uri.parse(uri) ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
