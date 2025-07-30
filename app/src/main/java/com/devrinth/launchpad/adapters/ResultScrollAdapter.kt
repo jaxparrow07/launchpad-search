@@ -92,7 +92,7 @@ class ResultScrollAdapter(private val mResults: List<ResultAdapter>, private var
                 true
             }
         } else {
-            holder.parentView.setOnClickListener {  }
+            holder.parentView.setOnLongClickListener { false  }
         }
 
     }

@@ -2,7 +2,7 @@ package com.devrinth.launchpad.utils
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
+import androidx.core.net.toUri
 
 class IntentUtils {
 
@@ -13,7 +13,7 @@ class IntentUtils {
         }
 
         fun getLinkIntent(link: String) : Intent {
-            return Intent(Intent.ACTION_VIEW, Uri.parse(link)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return Intent(Intent.ACTION_VIEW, link.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
         fun getAppIntent(packageManager: PackageManager, packageName: String) : Intent? {
@@ -25,15 +25,15 @@ class IntentUtils {
         }
 
         fun getCallIntent(number: String) : Intent {
-            return Intent(Intent.ACTION_DIAL, Uri.parse("tel:$number")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return Intent(Intent.ACTION_DIAL, "tel:$number".toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
         fun getEmailIntent(email: String) : Intent {
-            return Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return Intent(Intent.ACTION_SENDTO, "mailto:$email".toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
         fun getIntentFromString(action : String, uri : String) : Intent {
-            return Intent( action, Uri.parse(uri) ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return Intent( action, uri.toUri() ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
     }
