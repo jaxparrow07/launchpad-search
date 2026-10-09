@@ -14,9 +14,10 @@
     <a href="https://shields.rbtlog.dev/com.devrinth.launchpad">
       <img src="https://shields.rbtlog.dev/simple/com.devrinth.launchpad?style=for-the-badge" alt="RB shield">
     </a>
-    <a href="https://ko-fi.com/devrinth">
-        <img src="https://img.shields.io/badge/Buy_me_a_Kofi-donate-blue?style=for-the-badge&logo=kofi&color=%23FF6433" >
-    </a>
+    <br><br>
+    <a href="https://www.buymeacoffee.com/jaxparrow07">
+  <img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=%E2%98%95&slug=jaxparrow07&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" alt="Buy me a coffee" height="50">
+</a>
 </p>
 
 <hr>
@@ -54,4 +55,4 @@ Never leave your apps; get your tasks done with just a floating window that does
 > 📌 Please base your pull requests on the `dev` branch. The `main` branch is reserved for stable releases only.
 
 ### Financial
-You can buy me a coffee at  [Ko-fi](https://ko-fi.com/devrinth) to support the development of this project.
+You can buy me a coffee at  [Buy me a coffee](https://buymeacoffee.com/jaxparrow07) to support the development of this project.
